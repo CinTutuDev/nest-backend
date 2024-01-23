@@ -6,19 +6,15 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-     ConfigModule.forRoot(),
+    ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGO_URI),
     AuthModule,
-   
-   
   ],
   controllers: [],
   providers: [],
 })
 export class AppModule {
-
-/*   constructor(){
+  /*   constructor(){
     console.log(process.env);
   } */
-
 }
