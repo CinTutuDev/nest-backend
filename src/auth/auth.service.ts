@@ -52,12 +52,12 @@ export class AuthService {
 
   async register(registerDto: RegisUserterDto): Promise<LoginResponse> {
     const user = await this.create(registerDto);
-    console.log({user});
+    console.log({ user });
 
-    return{
+    return {
       user: user,
-      token: this.getJwtToken({id: user._id})
-    }
+      token: this.getJwtToken({ id: user._id }),
+    };
   }
 
   async login(loginDto: LoginDto): Promise<LoginResponse> {
@@ -78,6 +78,12 @@ export class AuthService {
       user: res,
       token: this.getJwtToken({ id: user.id }),
     };
+  }
+
+  async findUserId(id: string) {
+    const user = await this.userModel.findById(id);
+    const { password, ...rest } = user.toJSON();
+    return rest;
   }
 
   findAll() {
